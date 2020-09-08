@@ -54,7 +54,7 @@ func (options *Options) argsFromOptions(filePath string) []string {
 		args = append(args, fmt.Sprintf("-L %d,%d", line, line))
 	}
 
-	args = append(args, "--porcelain", "--incremental")
+	args = append(args, "--porcelain", "--incremental", "--")
 
 	args = append(args, filePath)
 	return args
