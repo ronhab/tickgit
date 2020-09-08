@@ -178,20 +178,20 @@ func Exec(ctx context.Context, filePath string, options *Options) (Result, error
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Error on cmd.StdoutPipe: %v\nargs: %v", err, args)
 	}
 
 	if err := cmd.Start(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Error on cmd.Start: %v\nargs: %v", err, args)
 	}
 
 	res, err := parsePorcelain(stdout)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Error on parsePorcelain: %v\nargs: %v", err, args)
 	}
 
 	if err := cmd.Wait(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Error on cmd.Wait: %v\nargs: %v", err, args)
 	}
 
 	return res, nil
